@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfumer&iacute;a y Librer&iacute;a de Vale - Cat&aacute;logo Exclusivo</title>
+    <style>
+        :root {
+            --bg-principal: #fcfcfc;
+            --bg-card: #ffffff;
+            --color-primario: #1a252c;
+            --color-acento: #c5a059;
+            --color-texto: #2c3e50;
+            --color-texto-muted: #7f8c8d;
+            --borde-sutil: #eaeaea;
+            --color-whatsapp: #25d366;
+            --color-banner: #1a252c;
+            --color-banner-texto: #f7f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-principal);
+            color: var(--color-texto);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Banner Superior de Anuncios */
+        .banner-superior {
+            background-color: var(--color-banner);
+            color: var(--color-banner-texto);
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
+        .banner-superior span {
+            color: var(--color-acento);
+            font-weight: 600;
+        }
+
+        /* Barra de navegaci&oacute;n superior */
+        nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--borde-sutil);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--color-primario);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--color-acento);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: var(--color-texto-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--color-primario);
+            font-weight: 600;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .seccion {
+            display: none;
+        }
+
+        .seccion.activa {
+            display: block;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            border-radius: 16px;
+            border: 1px solid var(--borde-sutil);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            color: var(--color-primario);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--color-texto-muted);
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-principal {
+            background-color: var(--color-primario);
+            color: white;
+            padding: 12px 28px;
+            font-size: 15px;
+            font-weight: 500;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-principal:hover {
+            transform: translateY(-2px);
+            background-color: var(--color-acento);
+            color: #ffffff;
+        }
+
+        .titulo-seccion {
+            font-size: 24px;
+            color: var(--color-primario);
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Búsqueda y Filtros */
+        .filtros-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 450px;
+            padding: 14px 25px;
+            font-size: 15px;
+            background-color: #ffffff;
+            border: 1px solid var(--borde-sutil);
+            color: var(--color-texto);
+            border-radius: 30px;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--color-acento);
+            box-shadow: 0 4px 20px rgba(197, 160, 89, 0.15);
+        }
+
+        .chips-genero {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .chip {
+            background-color: #f1f3f4;
+            border: 1px solid var(--borde-sutil);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            color: var(--color-texto);
+            transition: all 0.2s;
+        }
+
+        .chip:hover, .chip.activo {
+            background-color: var(--color-primario);
+            color: white;
+            border-color: var(--color-primario);
+        }
+
+        .catalogo {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+            border: 1px solid var(--borde-sutil);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            border-color: #dcdcdc;
+        }
+
+        .card-img-container {
+            width: 100%;
+            height: 280px;
+            background-color: #f7f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--borde-sutil);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.04);
+        }
+
+        .card-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin: 0 0 6px 0;
+            color: var(--color-primario);
+            font-weight: 600;
+        }
+
+        .marca-genero {
+            font-size: 13px;
+            color: var(--color-acento);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .especificaciones {
+            font-size: 14px;
+            color: var(--color-texto-muted);
+            margin-bottom: 15px;
+            border-top: 1px solid var(--borde-sutil);
+            padding-top: 12px;
+        }
+
+        .especificaciones p {
+            margin: 6px 0;
+        }
+
+        .footer-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--borde-sutil);
+            padding-top: 15px;
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .precio {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--color-primario);
+        }
+
+        .stock {
+            font-size: 12px;
+            color: var(--color-texto-muted);
+            background: #f1f3f4;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--color-whatsapp);
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .btn-whatsapp:hover {
+            opacity: 0.9;
+        }
+
+        .mensaje-centro {
+            text-align: center;
+            font-size: 16px;
+            color: var(--color-texto-muted);
+            grid-column: 1 / -1;
+            padding: 50px;
+        }
+
+        footer {
+            background-color: #1a252c;
+            color: #bdc3c7;
+            padding: 40px 20px 25px 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--borde-sutil);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col h4 span {
+            color: var(--color-acento);
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+            color: #bdc3c7;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 13px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Banner Superior -->
+    <div class="banner-superior">
+        ? <span>Perfumer&iacute;a y Librer&iacute;a de Vale</span> &bull; Consultas r&aacute;pidas y atenci&oacute;n personalizada por WhatsApp.
+    </div>
+
+    <!-- Barra de Navegación -->
+    <nav>
+        <div class="logo">PERFUMER&Iacute;A Y LIBRER&Iacute;A DE <span>VALE</span></div>
+        <ul class="nav-links">
+            <li><a id="link-inicio" class="active" onclick="cambiarSeccion('inicio')">Inicio</a></li>
+            <li><a id="link-perfumeria" onclick="cambiarSeccion('perfumeria')">Perfumer&iacute;a</a></li>
+            <li><a id="link-libreria" onclick="cambiarSeccion('libreria')">Librer&iacute;a</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- SECCIÓN INICIO -->
+        <div id="seccion-inicio" class="seccion activa">
+            <div class="hero">
+                <h1>Bienvenid@ a Perfumer&iacute;a y Librer&iacute;a de Vale</h1>
+                <p>Nos alegra mucho recibirte. Trabajamos cada d&iacute;a para ofrecerte productos originales, de excelente calidad y con la confianza y calidez que mereces en cada compra.</p>
+                <div class="hero-buttons">
+                    <button class="btn-principal" onclick="cambiarSeccion('perfumeria')">Ver Perfumer&iacute;a</button>
+                    <button class="btn-principal" onclick="cambiarSeccion('libreria')">Ver Librer&iacute;a</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN PERFUMERÍA -->
+        <div id="seccion-perfumeria" class="seccion">
+            <h2 class="titulo-seccion">Cat&aacute;logo de Perfumer&iacute;a</h2>
+            
+            <div class="filtros-container">
+                <input type="text" id="buscador-perfumeria" class="search-box" placeholder="Buscar por nombre, marca o g&eacute;nero" onkeyup="aplicarFiltrosPerfumeria()">
+                
+                <div class="chips-genero">
+                    <button class="chip activo" onclick="filtrarPorChip('todos', this)">Todos</button>
+                    <button class="chip" onclick="filtrarPorChip('femenino', this)">Femenino</button>
+                    <button class="chip" onclick="filtrarPorChip('masculino', this)">Masculino</button>
+                    <button class="chip" onclick="filtrarPorChip('unisex', this)">Unisex</button>
+                </div>
+            </div>
+
+            <div id="loading-perfumeria" class="mensaje-centro">Cargando productos de perfumer&iacute;a...</div>
+            <div id="catalogo-perfumeria" class="catalogo"></div>
+        </div>
+
+        <!-- SECCIÓN LIBRERÍA -->
+        <div id="seccion-libreria" class="seccion">
+            <h2 class="titulo-seccion">Cat&aacute;logo de Librer&iacute;a</h2>
+            <div class="filtros-container">
+                <input type="text" id="buscador-libreria" class="search-box" placeholder="Buscar art&iacute;culo, marca o tipo..." onkeyup="aplicarFiltrosLibreria()">
+            </div>
+            <div id="loading-libreria" class="mensaje-centro">Cargando art&iacute;culos de librer&iacute;a...</div>
+            <div id="catalogo-libreria" class="catalogo"></div>
+        </div>
+
+    </div>
+
+    <!-- Pie de Página -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Perfumer&iacute;a y Librer&iacute;a de <span>Vale</span></h4>
+                <p>Tu espacio de confianza para encontrar fragancias originales y art&iacute;culos de librer&iacute;a seleccionados con dedicaci&oacute;n.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Atenci&oacute;n y Consultas</h4>
+                <p>Realiza tus pedidos de forma directa y r&aacute;pida a trav&eacute;s de nuestros botones de contacto por WhatsApp en cada producto.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Perfumer&iacute;a y Librer&iacute;a de Vale - Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        const URL_BASE = "https://script.google.com/macros/s/AKfycbyiVcGNOJ9ToTvkK9ce-60Z1Zj5u0CRi9XoZzShGKhGCBxmrPBkaLyREGPCPHIQAmRsoA/exec";
+        const NUMERO_WHATSAPP = "5492336492115"; 
+
+        let listaPerfumes = [];
+        let listaLibreria = [];
+        let generoSeleccionado = 'todos';
+
+        function cambiarSeccion(seccion) {
+            document.getElementById('seccion-inicio').classList.remove('activa');
+            document.getElementById('seccion-perfumeria').classList.remove('activa');
+            document.getElementById('seccion-libreria').classList.remove('activa');
+            document.getElementById('link-inicio').classList.remove('active');
+            document.getElementById('link-perfumeria').classList.remove('active');
+            document.getElementById('link-libreria').classList.remove('active');
+
+            if (seccion === 'inicio') {
+                document.getElementById('seccion-inicio').classList.add('activa');
+                document.getElementById('link-inicio').classList.add('active');
+            } else if (seccion === 'perfumeria') {
+                document.getElementById('seccion-perfumeria').classList.add('activa');
+                document.getElementById('link-perfumeria').classList.add('active');
+                if (listaPerfumes.length === 0) {
+                    cargarProductos('perfumes', 'loading-perfumeria', 'catalogo-perfumeria', (data) => listaPerfumes = data);
+                }
+            } else if (seccion === 'libreria') {
+                document.getElementById('seccion-libreria').classList.add('activa');
+                document.getElementById('link-libreria').classList.add('active');
+                if (listaLibreria.length === 0) {
+                    cargarProductos('libreria', 'loading-libreria', 'catalogo-libreria', (data) => listaLibreria = data);
+                }
+            }
+        }
+
+        function cargarProductos(seccion, loadingId, contenedorId, guardarCallback) {
+            const urlConParametro = `${URL_BASE}?seccion=${seccion}`;
+            fetch(urlConParametro)
+                .then(response => response.json())
+                .then(data => {
+                    const loadingEl = document.getElementById(loadingId);
+                    if (loadingEl) loadingEl.style.display = "none";
+
+                    if (data.error) {
+                        document.getElementById(contenedorId).innerHTML = `<p class="mensaje-centro" style="color:#d9534f;">${data.error}</p>`;
+                        return;
+                    }
+
+                    guardarCallback(data);
+                    mostrarProductos(data, contenedorId);
+                })
+                .catch(error => {
+                    const loadingEl = document.getElementById(loadingId);
+                    if (loadingEl) loadingEl.innerText = "Error al conectar con la base de datos.";
+                    console.error("Error:", error);
+                });
+        }
+
+        function mostrarProductos(productos, contenedorId) {
+            const contenedor = document.getElementById(contenedorId);
+            contenedor.innerHTML = "";
+
+            if (!Array.isArray(productos) || productos.length === 0) {
+                contenedor.innerHTML = `<p class="mensaje-centro">No hay productos disponibles en esta secci&oacute;n.</p>`;
+                return;
+            }
+
+            productos.forEach(prod => {
+                const imgUrl = (prod.urlimagen || prod.url_imagen || '').trim() !== "" 
+                    ? (prod.urlimagen || prod.url_imagen) 
+                    : 'https://via.placeholder.com/400x400?text=Sin+Imagen';
+                
+                const precioNumerico = Number(String(prod.precio || 0).replace(/[^0-9.-]+/g,""));
+                const precioFormateado = !isNaN(precioNumerico) ? precioNumerico.toLocaleString('es-AR') : '0';
+
+                const mensajeWp = `Hola Vale, quiero consultar por este producto: ${prod.nombre || ''} ($${precioFormateado})`;
+                const linkWp = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensajeWp)}`;
+
+                const marca = prod.marca || '';
+                const tipoArt = prod.tipoarticulo || prod.genero || ''; 
+                const presentacion = prod.precentacion || prod.presentacion || prod.concentracion || 'N/A';
+
+                const card = document.createElement("div");
+                card.className = "card";
+                
+                card.innerHTML = `
+                    <div class="card-img-container">
+                        <img src="${imgUrl}" alt="${prod.nombre || 'Producto'}">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3>${prod.nombre || 'Sin nombre'}</h3>
+                            <div class="marca-genero">${marca} ${tipoArt ? '&bull; ' + tipoArt : ''}</div>
+                            <div class="especificaciones">
+                                <p>Detalle/Presentaci&oacute;n: <b>${presentacion}</b></p>
+                            </div>
+                        </div>
+                        <div class="footer-card">
+                            <span class="precio">$${precioFormateado}</span>
+                            <span class="stock">Stock: ${prod.stock || 0}</span>
+                        </div>
+                        <a href="${linkWp}" target="_blank" class="btn-whatsapp">
+                            Consultar por WhatsApp
+                        </a>
+                    </div>
+                `;
+                contenedor.appendChild(card);
+            });
+        }
+
+        function filtrarPorChip(genero, elemento) {
+            generoSeleccionado = genero;
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('activo'));
+            elemento.classList.add('activo');
+            aplicarFiltrosPerfumeria();
+        }
+
+        function aplicarFiltrosPerfumeria() {
+            const texto = document.getElementById("buscador-perfumeria").value.toLowerCase();
+            const filtrados = listaPerfumes.filter(prod => {
+                const nombre = (prod.nombre || "").toLowerCase();
+                const marca = (prod.marca || "").toLowerCase();
+                const generoProd = (prod.genero || prod.tipoarticulo || "").toLowerCase();
+
+                const coincideTexto = nombre.includes(texto) || marca.includes(texto) || generoProd.includes(texto);
+                const coincideGenero = (generoSeleccionado === 'todos') || generoProd.includes(generoSeleccionado);
+
+                return coincideTexto && coincideGenero;
+            });
+            mostrarProductos(filtrados, 'catalogo-perfumeria');
+        }
+
+        function aplicarFiltrosLibreria() {
+            const texto = document.getElementById("buscador-libreria").value.toLowerCase();
+            const filtrados = listaLibreria.filter(prod => {
+                const nombre = (prod.nombre || "").toLowerCase();
+                const marca = (prod.marca || "").toLowerCase();
+                const tipoArt = (prod.tipoarticulo || "").toLowerCase();
+
+                return nombre.includes(texto) || marca.includes(texto) || tipoArt.includes(texto);
+            });
+            mostrarProductos(filtrados, 'catalogo-libreria');
+        }
+    </script>
+</body>
+</html>
